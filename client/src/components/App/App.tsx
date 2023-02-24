@@ -5,7 +5,7 @@ import './App.css';
 import {ResponseInterface} from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
 
-type ModelValueType = 'gpt' | 'codex' | 'image';
+type ModelValueType = 'gpt' | 'image';
 const App = () => {
 
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
