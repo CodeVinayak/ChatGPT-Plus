@@ -35,6 +35,7 @@
     margin-top: 0;
 }
 
+
 .ai-image {
     width: 500px;
     height: auto;
@@ -68,3 +69,28 @@
 .hljs-link, .hljs-operator, .hljs-regexp, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-symbol, .hljs-template-variable, .hljs-variable {
     color: white !important;
 }
+
+/* Zero padding on devices less than max width of 1024px */
+@media only screen and (max-width: 1024px) {
+    #response-list{
+        max-height:85%
+    }
+    .response-container {
+      padding: 15px 10px;
+      margin-right: 80px;
+    }
+    .prompt-content{
+      margin-right: 80px;
+    }
+    .response-container {
+        padding: 15px 10px;
+        margin-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        }
+        .prompt-content {
+        margin-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        }
+  }
