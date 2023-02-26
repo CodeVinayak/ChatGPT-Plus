@@ -82,6 +82,7 @@ const App = () => {
     await getGPTResult(promptToRetry, uniqueIdToRetry);
   }
 
+
   const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
     // Get the prompt input
     const _prompt = _promptToRetry ?? htmlToText(prompt);
@@ -137,9 +138,71 @@ const App = () => {
     } finally {
       // Clear the loader interval
       clearInterval(loadInterval);
+      // Remove the loader
+      const element = document.getElementById(uniqueId) as HTMLElement;
+      element.textContent = '';
       setIsLoading(false);
     }
   }
+
+  // const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
+  //   // Get the prompt input
+  //   const _prompt = _promptToRetry ?? htmlToText(prompt);
+
+  //   // If a response is already being generated or the prompt is empty, return
+  //   if (isLoading || !_prompt) {
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+
+  //   // Clear the prompt input
+  //   setPrompt('');
+
+  //   let uniqueId: string;
+  //   if (_uniqueIdToRetry) {
+  //     uniqueId = _uniqueIdToRetry;
+  //   } else {
+  //     // Add the self prompt to the response list
+  //     addResponse(true, _prompt);
+  //     uniqueId = addResponse(false);
+  //     await delay(50);
+  //     addLoader(uniqueId);
+  //   }
+
+  //   try {
+  //     // Send a POST request to the API with the prompt in the request body
+  //     const response = await axios.post('get-prompt-result', {
+  //       prompt: _prompt,
+  //       model: modelValue
+  //     });
+  //     if (modelValue === 'image') {
+  //       // Show image for `Create image` model
+  //       updateResponse(uniqueId, {
+  //         image: response.data,
+  //       });
+  //     } else {
+  //       updateResponse(uniqueId, {
+  //         response: response.data.trim(),
+  //       });
+  //     }
+
+  //     setPromptToRetry(null);
+  //     setUniqueIdToRetry(null);
+  //   } catch (err) {
+  //     setPromptToRetry(_prompt);
+  //     setUniqueIdToRetry(uniqueId);
+  //     updateResponse(uniqueId, {
+  //       // @ts-ignore
+  //       response: `Error: ${err.message}`,
+  //       error: true
+  //     });
+  //   } finally {
+  //     // Clear the loader interval
+  //     clearInterval(loadInterval);
+  //     setIsLoading(false);
+  //   }
+  // }
 
   return (
     <div className="App">
