@@ -1,29 +1,67 @@
-import {useState} from 'react';
+// import {useState} from 'react';
+// import axios from "axios";
+// import PromptInput from "../PromptInput/PromptInput";
+// import './App.css';
+// import {ResponseInterface} from "../PromptResponseList/response-interface";
+// import PromptResponseList from "../PromptResponseList/PromptResponseList";
+// import { useEffect, useRef } from 'react';
+
+// type ModelValueType = 'gpt' | 'image';
+// const App = () => {
+
+//   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
+//   const [prompt, setPrompt] = useState<string>('');
+//   const [promptToRetry, setPromptToRetry] = useState<string | null>(null);
+//   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
+//   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
+//   const [isLoading, setIsLoading] = useState(false);
+//   const responseListRef = useRef<HTMLDivElement>(null);
+
+// useEffect(() => {
+//   const responseListDiv = responseListRef.current;
+//   <div id="response-list" ref={responseListRef}>
+//   <PromptResponseList responseList={responseList} key="response-list"/>
+// </div>
+// useEffect(() => {
+//   const responseListDiv = responseListRef.current;
+
+//   if (responseListDiv) {
+//     responseListDiv.scrollTop = responseListDiv.scrollHeight;
+//   }
+// }, [responseList]);
+
+
+//   if (responseListDiv) {
+//     responseListDiv.scrollTop = responseListDiv.scrollHeight;
+//   }
+// }, [responseList]);
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import PromptInput from "../PromptInput/PromptInput";
-import './App.css';
-import {ResponseInterface} from "../PromptResponseList/response-interface";
+import "./App.css";
+import { ResponseInterface } from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
-import { useEffect, useRef } from 'react';
 
-type ModelValueType = 'gpt' | 'image';
+type ModelValueType = "gpt" | "image";
+
 const App = () => {
-
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
-  const [prompt, setPrompt] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>("");
   const [promptToRetry, setPromptToRetry] = useState<string | null>(null);
   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
-  const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
+  const [modelValue, setModelValue] = useState<ModelValueType>("gpt");
   const [isLoading, setIsLoading] = useState(false);
+
   const responseListRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-  const responseListDiv = responseListRef.current;
+  useEffect(() => {
+    const responseListDiv = responseListRef.current;
+    if (responseListDiv) {
+      responseListDiv.scrollTop = responseListDiv.scrollHeight;
+    }
+  }, [responseList]);
 
-  if (responseListDiv) {
-    responseListDiv.scrollTop = responseListDiv.scrollHeight;
-  }
-}, [responseList]);
+  let loadInterval: number | undefined;
 
   let loadInterval: number | undefined;
 
