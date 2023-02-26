@@ -63,8 +63,6 @@ const App = () => {
 
   let loadInterval: number | undefined;
 
-  let loadInterval: number | undefined;
-
   const generateUniqueId = () => {
     const timestamp = Date.now();
     const randomNumber = Math.random();
