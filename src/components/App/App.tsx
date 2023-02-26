@@ -162,7 +162,7 @@ const App = () => {
         <label htmlFor="model-select">Select model:</label>
         <select id="model-select" value={modelValue} onChange={(event) => setModelValue(event.target.value as ModelValueType)}>
           <option value="gpt">Ask Question (using GPT-3 Model)</option>
-          <option value="image">Create AI Image (using DALL·E Model)</option>
+          <option value="image">Create Image (using DALL·E Model)</option>
         </select>
       </div>
       <div id="input-container">
