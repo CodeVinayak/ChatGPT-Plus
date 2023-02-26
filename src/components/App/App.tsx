@@ -4,6 +4,7 @@ import PromptInput from "../PromptInput/PromptInput";
 import './App.css';
 import {ResponseInterface} from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
+import { useEffect, useRef } from 'react';
 
 type ModelValueType = 'gpt' | 'image';
 const App = () => {
@@ -14,6 +15,16 @@ const App = () => {
   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
   const [isLoading, setIsLoading] = useState(false);
+  const responseListRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  const responseListDiv = responseListRef.current;
+
+  if (responseListDiv) {
+    responseListDiv.scrollTop = responseListDiv.scrollHeight;
+  }
+}, [responseList]);
+
   let loadInterval: number | undefined;
 
   const generateUniqueId = () => {
