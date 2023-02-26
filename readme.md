@@ -16,4 +16,4 @@ VelocityAI is powered by OpenAI's GPT-3 and DALL-E model, as well as various ope
 
 License
 
-VelocityAI is released under the MIT License. See LICENSE.md for more information.
+VelocityAI is released under the MIT License. 
