@@ -51,7 +51,7 @@ html, body, #root, .App {
   }
 
   .response-container p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
   }
 }
@@ -67,7 +67,7 @@ html, body, #root, .App {
   }
 
   .response-container p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
   }
 }
