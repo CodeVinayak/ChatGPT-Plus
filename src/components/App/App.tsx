@@ -1,144 +1,20 @@
-// import {useState} from 'react';
-// import axios from "axios";
-// import PromptInput from "../PromptInput/PromptInput";
-// import './App.css';
-// import {ResponseInterface} from "../PromptResponseList/response-interface";
-// import PromptResponseList from "../PromptResponseList/PromptResponseList";
-
-// type ModelValueType = 'gpt' | 'image';
-// const App = () => {
-
-//   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
-//   const [prompt, setPrompt] = useState<string>('');
-//   const [promptToRetry, setPromptToRetry] = useState<string | null>(null);
-//   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
-//   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
-//   const [isLoading, setIsLoading] = useState(false);
-//   let loadInterval: number | undefined;
-
-//   const generateUniqueId = () => {
-//     const timestamp = Date.now();
-//     const randomNumber = Math.random();
-//     const hexadecimalString = randomNumber.toString(16);
-
-//     return `id-${timestamp}-${hexadecimalString}`;
-//   }
-
-//   const htmlToText = (html: string) => {
-//     const temp = document.createElement('div');
-//     temp.innerHTML = html;
-//     return temp.textContent;
-//   }
-
-//   const delay = (ms: number) => {
-//     return new Promise( resolve => setTimeout(resolve, ms) );
-//   }
-
-//   const addLoader = (uid: string) => {
-//     const element = document.getElementById(uid) as HTMLElement;
-//     element.textContent = ''
-
-//     // @ts-ignore
-//     loadInterval = setInterval(() => {
-//       // Update the text content of the loading indicator
-//       element.textContent += '.';
-
-//       // If the loading indicator has reached three dots, reset it
-//       if (element.textContent === '....') {
-//         element.textContent = '';
-//       }
-//     }, 300);
-//   }
-
-
-//   const addResponse = (selfFlag: boolean, response?: string) => {
-//     const uid = generateUniqueId()
-//     setResponseList(prevResponses => [
-//       ...prevResponses,
-//       {
-//         id: uid,
-//         response,
-//         selfFlag
-//       },
-//     ]);
-//     return uid;
-//   }
-
-//   const updateResponse = (uid: string, updatedObject: Record<string, unknown>) => {
-//     setResponseList(prevResponses => {
-//       const updatedList = [...prevResponses]
-//       const index = prevResponses.findIndex((response) => response.id === uid);
-//       if (index > -1) {
-//         updatedList[index] = {
-//           ...updatedList[index],
-//           ...updatedObject
-//         }
-//       }
-//       return updatedList;
-//     });
-//   }
-
-//   const regenerateResponse = async () => {
-//     await getGPTResult(promptToRetry, uniqueIdToRetry);
-//   }
-
-
-//   const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
-//     // Get the prompt input
-//     const _prompt = _promptToRetry ?? htmlToText(prompt);
-
-//     // If a response is already being generated or the prompt is empty, return
-//     if (isLoading || !_prompt) {
-//       return;
-//     }
-
-//     setIsLoading(true);
-
-import { useRef, useState } from 'react';
-import axios from 'axios';
-import PromptInput from '../PromptInput/PromptInput';
+import {useState} from 'react';
+import axios from "axios";
+import PromptInput from "../PromptInput/PromptInput";
 import './App.css';
-<<<<<<< HEAD
 import {ResponseInterface} from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
-import { useEffect, useRef } from 'react';
-=======
-import { ResponseInterface } from '../PromptResponseList/response-interface';
-import PromptResponseList from '../PromptResponseList/PromptResponseList';
->>>>>>> parent of 5a4b63ff (Update App.tsx)
 
 type ModelValueType = 'gpt' | 'image';
-
 const App = () => {
+
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState<string>('');
   const [promptToRetry, setPromptToRetry] = useState<string | null>(null);
   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
   const [isLoading, setIsLoading] = useState(false);
-  const responseListRef = useRef<HTMLDivElement>(null);
-
-useEffect(() => {
-  const responseListDiv = responseListRef.current;
-  <div id="response-list" ref={responseListRef}>
-  <PromptResponseList responseList={responseList} key="response-list"/>
-</div>
-useEffect(() => {
-  const responseListDiv = responseListRef.current;
-
-  if (responseListDiv) {
-    responseListDiv.scrollTop = responseListDiv.scrollHeight;
-  }
-}, [responseList]);
-
-
-  if (responseListDiv) {
-    responseListDiv.scrollTop = responseListDiv.scrollHeight;
-  }
-}, [responseList]);
-
   let loadInterval: number | undefined;
-  const responseListRef = useRef<HTMLDivElement>(null); // Add a ref to the response list container
 
   const generateUniqueId = () => {
     const timestamp = Date.now();
@@ -146,21 +22,21 @@ useEffect(() => {
     const hexadecimalString = randomNumber.toString(16);
 
     return `id-${timestamp}-${hexadecimalString}`;
-  };
+  }
 
   const htmlToText = (html: string) => {
     const temp = document.createElement('div');
     temp.innerHTML = html;
     return temp.textContent;
-  };
+  }
 
   const delay = (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  };
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
   const addLoader = (uid: string) => {
     const element = document.getElementById(uid) as HTMLElement;
-    element.textContent = '';
+    element.textContent = ''
 
     // @ts-ignore
     loadInterval = setInterval(() => {
@@ -172,38 +48,40 @@ useEffect(() => {
         element.textContent = '';
       }
     }, 300);
-  };
+  }
+
 
   const addResponse = (selfFlag: boolean, response?: string) => {
-    const uid = generateUniqueId();
+    const uid = generateUniqueId()
     setResponseList(prevResponses => [
       ...prevResponses,
       {
         id: uid,
         response,
-        selfFlag,
+        selfFlag
       },
     ]);
     return uid;
-  };
+  }
 
   const updateResponse = (uid: string, updatedObject: Record<string, unknown>) => {
     setResponseList(prevResponses => {
-      const updatedList = [...prevResponses];
-      const index = prevResponses.findIndex(response => response.id === uid);
+      const updatedList = [...prevResponses]
+      const index = prevResponses.findIndex((response) => response.id === uid);
       if (index > -1) {
         updatedList[index] = {
           ...updatedList[index],
-          ...updatedObject,
-        };
+          ...updatedObject
+        }
       }
       return updatedList;
     });
-  };
+  }
 
   const regenerateResponse = async () => {
     await getGPTResult(promptToRetry, uniqueIdToRetry);
-  };
+  }
+
 
   const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
     // Get the prompt input
